@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Learning Chrome Extension</title>
+		<style>
+			body{
+			min-width: 357px;
+			height: 500px;
+			overflow-x: auto;
+			}
+			.wrapper{
+			position: absolute;
+			left: 5px;
+			right: 5px;
+			bottom: 5px;
+			top: 5px;
+			box-shadow: inset 0px 0px 10px 0px black;
+			background-color: rgb(185, 214, 218);
+			overflow: hidden;
+			}
+			.browseTree{
+			position: absolute;
+			left: 0px;
+			right: -22px;
+			bottom: 0px;
+			top: 0px;
+			overflow: auto;
+			}
+			.page{
+			position: absolute;
+			left: 0px;
+			right: 5px;
+			height: 495px;
+			margin: 5px;
+			box-shadow: 0px 0px 5px 0px black;
+			background-color: white;
+			}
+			.page_link{
+			position: relative;
+			margin: 5px;
+			height: 30px;
+			width: 340px;
+			box-shadow: 0px 0px 5px 0px black;
+			background-color: white;
+			}
+			a{
+			color: blue;
+			text-decoration: none;
+			margin-left: 5px;
+			font-size: 20px;
+			}
+		</style>
+		<script src="popup.js"></script>
+	</head>
+	<body>
+		<div class="canvas">
+			<div class="wrapper">
+				<div class="browseTree">
+					<div class="page">
+						<div class="page_link"><a href="http://en.wikipedia.org/wiki/Main_Page">Main_Page</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
