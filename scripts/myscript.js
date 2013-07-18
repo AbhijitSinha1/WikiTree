@@ -1,7 +1,11 @@
+var curr_url;
 $(document).ready(function(){
+	var visible=1;
 	var this_url=window.location;
 	var this_count=addToStorage(this_url);
-	var histPanel="<div id='bodyContent'>History</div><ul  style='list-style-type: none;list-style-image: none;' id='bodyContent'>"+listStorage("")+"</ul><div class='deleteHistory' id='bodyContent' style='cursor:pointer'>Delete History</div>";
+	curr_url=this_url;
+	$("#mw-panel").css("overflow-x","auto");
+	var histPanel="<div id='bodyContent' class='history' style='cursor:pointer'>History</div><ul  style='list-style-type: none;list-style-image: none;' id='bodyContent' class='histList'>"+listStorage("")+"</ul><div class='deleteHistory' id='bodyContent' style='cursor:pointer'>Delete History</div>";
 	$("#mw-panel").append(histPanel);
 	$("a").click(function(){
 		insertToStorage(this_count,this);
@@ -9,6 +13,15 @@ $(document).ready(function(){
 	$(".deleteHistory").click(function(){
 		localStorage.clear();
 		location.reload();
+	});
+	$(".history").click(function(){
+	visible=1-visible;
+		if(visible){
+		$(".histList").css("visibility","hidden");
+		}
+		else{
+		$(".histList").css("visibility","visible");
+		}
 	});
 });
 function isCorrectURL(url){
@@ -50,7 +63,11 @@ function listStorage(prefix){
 	var retStr="";
 	while(localStorage.getItem(prefix+this_count)!=null){
 		var this_url=localStorage.getItem(prefix+this_count);
-		retStr+="<li><span class='toctext'><a href='"+this_url+"' style='font-size:0.8em'>"+format(this_url)+"</a></span>";
+		var style="";
+		if(this_url==curr_url){
+			style="> ";
+		}
+		retStr+="<li><span class='toctext'><a href='"+this_url+"'>"+style+format(this_url)+"</a></span>";
 		retStr+="<ul style='list-style-type: none;list-style-image: none;'>";
 		retStr+=listStorage(prefix+this_count);
 		retStr+="</ul>";
